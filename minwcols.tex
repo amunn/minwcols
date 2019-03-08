@@ -1,0 +1,75 @@
+\documentclass[11pt]{article}
+\title{\textbf{The minwcols package}}
+\author{\textbf{Alan Munn}\\Department of Linguistics and Languages\\\texttt{\href{mailto:amunn@msu.edu}{amunn@msu.edu}}}
+\date{Version 1.0 2019/03/07}
+\usepackage{fontspec}
+\setmainfont[]{Linux Libertine O}
+\setsansfont[]{Linux Biolinum O}
+\setmonofont[Scale=MatchLowercase]{Linux Libertine Mono O}
+\usepackage[lmargin=1in,rmargin=1in,tmargin=1.25in,bmargin=1in]{geometry}
+\usepackage{titling}
+\usepackage{array, booktabs, multicol, xspace,tabularx}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{fancyvrb,listings,url}
+\usepackage{pdfpages}
+\usepackage[sf]{titlesec}
+\usepackage{titleps}
+\newpagestyle{main}{%
+\setfoot{\itshape\pkg{minwcols} package}{}{\thepage}}
+\pagestyle{main}
+
+\usepackage[colorlinks=true]{hyperref}
+
+\DefineShortVerb{\|}
+\newcommand*\bs{\textbackslash}
+  
+\lstset{%
+    basicstyle=\ttfamily\small,
+    commentstyle=\itshape\ttfamily\small,
+    showspaces=false,
+    showstringspaces=false,
+    breaklines=true,
+    breakautoindent=true,
+    frame=single
+    captionpos=t
+    language=TeX
+}
+  
+\newcommand*{\pkg}[1]{\texttt{#1}\xspace}
+\setitemize[1]{label={}}
+\setitemize[2]{label={}}
+\setdescription{font={\normalfont}}
+\setlength{\droptitle}{-1in}
+
+
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\abstract{\noindent The \pkg{minwcols} package implements \pkg{C}, \pkg{L}, and \pkg{R} columns that behave like regular \pkg{c}, \pkg{l}, and \pkg{r} columns, but with a minimum specified width. The package is based on my answer to a StackExchange question: \href{https://tex.stackexchange.com/q/402414/2693}{Specifying minimal (not fixed) width in tabular}.}
+
+\section{Basic use}
+The package depends on the \pkg{array} package an implements three new column specifications:
+
+\begin{description}[font=\normalfont,itemindent=1in,align=right]
+\item[\pkg{C\{<width>\}}] Centred column with a minimum width of \pkg{<width>}.
+\item[\pkg{L\{<width>\}}] Left aligned column with a minimum width of \pkg{<width>}.
+\item[\pkg{R\{<width>\}}] Right aligned column with a minimum width of \pkg{<width>}.
+\end{description}
+\section{Changing the defaults}
+Since the package defines new columns using upper case versions of the standard columns, this may interfere with other uses of \pkg{array}. There are two ways to change the defaults column names: as a package option or using the \pkg{MVCsetup} command. Both use a key-value interface:
+
+\begin{description}[font=\normalfont,itemindent=.5in,align=right]
+\item[\pkg{center=X}]{Rename the default C column to X}
+\item[\pkg{centre=X}]{Rename the default C column to X}
+\item[\pkg{left=X}]{Rename the default L column to X}
+\item[\pkg{right=X}]{Rename the deafault R column to X}
+\end{description}
+
+\paragraph{Example:} Change the symbol for the R column to F:
+\begin{description}[font=\normalfont,itemindent=1.25in,align=right]
+\item[As a package option:]{|\usepackage[right=F]{minwcols}|}
+\item[In the preamble:]{|\MWCsetup{right=F]|}
+\end{description}
+\end{document}
